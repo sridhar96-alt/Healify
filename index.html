@@ -53,6 +53,109 @@ input, textarea {
 </style>
 </head>
 
+  <!-- 🌿 Healify AI Chat -->
+<style>
+#chatButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2E8B57;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#chatWindow {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  overflow: hidden;
+  font-family: Arial;
+}
+
+#chatHeader {
+  background: #2E8B57;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#chatMessages {
+  height: 250px;
+  overflow-y: auto;
+  padding: 10px;
+  color: black;
+  font-size: 14px;
+}
+
+#chatInput {
+  width: 70%;
+  padding: 8px;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+#sendBtn {
+  width: 30%;
+  border: none;
+  background: #2E8B57;
+  color: white;
+}
+</style>
+
+<button id="chatButton" onclick="toggleChat()">💬</button>
+
+<div id="chatWindow">
+  <div id="chatHeader">Healify AI</div>
+  <div id="chatMessages"></div>
+  <input id="chatInput" placeholder="Ask me about health...">
+  <button id="sendBtn" onclick="sendChat()">Send</button>
+</div>
+
+<script>
+function toggleChat() {
+  let chat = document.getElementById("chatWindow");
+  chat.style.display = chat.style.display === "none" ? "block" : "none";
+}
+
+function sendChat() {
+  let input = document.getElementById("chatInput");
+  let msg = input.value.toLowerCase();
+  if (!msg) return;
+
+  addMessage("You", msg);
+  addMessage("Healify", getReply(msg));
+  input.value = "";
+}
+
+function addMessage(sender, text) {
+  let chat = document.getElementById("chatMessages");
+  chat.innerHTML += "<p><b>" + sender + ":</b> " + text + "</p>";
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function getReply(msg) {
+  if (msg.includes("bmi")) return "Your BMI helps assess body health. Use the BMI tool above.";
+  if (msg.includes("diet")) return "Eat fruits, vegetables, and balanced meals daily.";
+  if (msg.includes("exercise")) return "30 minutes of walking or yoga is great for health.";
+  if (msg.includes("sleep")) return "Aim for 7–8 hours of quality sleep.";
+  if (msg.includes("stress")) return "Try deep breathing, meditation, or a short walk.";
+  if (msg.includes("sad") || msg.includes("tired")) return "It seems you're feeling low. Take rest and stay hydrated 💙";
+  if (msg.includes("happy")) return "That's wonderful! Keep maintaining healthy habits 😊";
+  if (msg.includes("water")) return "Drink at least 8 glasses of water daily.";
+
+  return "I'm your Healify assistant. Ask me about health, mood, diet, or fitness.";
+}
+  
+</script>
 <body>
 
 <header>🌿 Healify 2.0 — Smart Health Companion</header>
@@ -153,4 +256,5 @@ function startVoice(){
 
 </body>
 </html>
+
 
