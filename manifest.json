@@ -1,6 +1,6 @@
 {
   "name": "SmartHealth AI",
-  "short_name": "SmartHealth",
+  "short_name": "Healify",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#7c3aed",
@@ -12,4 +12,5 @@
       "type": "image/png"
     }
   ]
+
 }
